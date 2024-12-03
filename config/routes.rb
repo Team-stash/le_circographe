@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "pages/show"
+  get "pages/about"
   
   
   namespace :admin do
@@ -9,10 +11,10 @@ Rails.application.routes.draw do
   resource :session, only: %i[new create destroy]
   resources :passwords, param: :token
   resource :registration, only: %i[new create]
-  ressources :users
+  resources :users
   
   root "home#index"
-  get "dashboard", to: "home#dashboard"
+
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

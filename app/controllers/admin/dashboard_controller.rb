@@ -11,5 +11,7 @@ class Admin::DashboardController < ApplicationController
   def authorize_admin_or_godmode
     unless current_user&.role.in?(['admin', 'godmode'])
       redirect_to root_path, alert: 'Accès non autorisé'
+    end
   end
+
 end
