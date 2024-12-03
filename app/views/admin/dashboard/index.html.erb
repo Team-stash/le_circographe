@@ -1,0 +1,33 @@
+<div class="admin-dashboard">
+  <h1>Tableau de bord administrateur</h1>
+
+  <div class="dashboard-stats">
+    <p>Nombre d'utilisateurs : <%= @users_count %></p>
+  </div>
+
+  <div class="dashboard-actions">
+    <%= link_to "Gérer les utilisateurs", admin_users_path, class: "btn btn-primary" %>
+  </div>
+
+  <h2>Liste des utilisateurs</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Rôle</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email_address %></td>
+          <td><%= user.role %></td>
+          <td>
+            <%= link_to 'Modifier', edit_admin_user_path(user) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
