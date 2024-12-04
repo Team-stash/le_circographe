@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_04_101104) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_04_143307) do
   create_table "event_attendees", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "event_id", null: false
@@ -99,6 +99,18 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_101104) do
     t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "last_name"
+    t.string "first_name"
+    t.date "birthdate"
+    t.string "zip_code"
+    t.string "town"
+    t.string "country"
+    t.string "phone_number"
+    t.string "occupation"
+    t.string "specialty"
+    t.boolean "image_rights", default: false
+    t.boolean "newsletter", default: false
+    t.boolean "get_involved", default: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 

@@ -14,3 +14,47 @@ Role.create(name: 'circus_membership')
 Role.create(name: 'volunteer')
 Role.create(name: 'admin')
 Role.create(name: 'godmode')
+
+User.create!(
+  email_address: "test@example.com",
+  password: "123456",
+  last_name: "Dupont",
+  first_name: "Jean",
+  birthdate: "1970-01-01",
+  zip_code: "75000",
+  town: "Paris",
+  country: "France",
+  phone_number: "0123456789",
+  occupation: "Developer",
+  specialty: "Backend",
+  image_rights: true,
+  newsletter: false,
+  get_involved: true
+)
+
+
+User.create!(
+  email_address: "admin@rails.com",
+  password: "123456",
+  role: "admin"
+)
+
+20.times do
+  User.create!(
+    email_address: Faker::Internet.email,
+    password: "password123",
+    last_name: Faker::Name.last_name,
+    first_name: Faker::Name.first_name,
+    birthdate: Faker::Date.birthday(min_age: 18, max_age: 99),
+    zip_code: Faker::Address.zip_code,
+    town: Faker::Address.city,
+    country: Faker::Address.country,
+    phone_number: Faker::PhoneNumber.phone_number,
+    occupation: Faker::Job.title,
+    specialty: Faker::Job.field,
+    image_rights: [true, false].sample,
+    newsletter: [true, false].sample,
+    get_involved: [true, false].sample,
+    role: %w[guest membership circus_membership volunteer].sample
+  )
+end
