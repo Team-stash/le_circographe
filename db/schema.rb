@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_04_095028) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_04_101104) do
   create_table "event_attendees", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "event_id", null: false
@@ -37,6 +37,16 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_095028) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer "user_membership_id"
+    t.string "payment_method"
+    t.decimal "amount"
+    t.boolean "status", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_membership_id"], name: "index_payments_on_user_membership_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -50,6 +60,28 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_095028) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "subscription_types", force: :cascade do |t|
+    t.string "membership_type"
+    t.decimal "price"
+    t.integer "duration"
+    t.text "description"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_memberships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "subscription_type_id", null: false
+    t.integer "payment_id", null: false
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_user_memberships_on_payment_id"
+    t.index ["subscription_type_id"], name: "index_user_memberships_on_subscription_type_id"
+    t.index ["user_id"], name: "index_user_memberships_on_user_id"
   end
 
   create_table "user_roles", force: :cascade do |t|
@@ -74,7 +106,11 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_095028) do
   add_foreign_key "event_attendees", "payments"
   add_foreign_key "event_attendees", "users"
   add_foreign_key "events", "users"
+  add_foreign_key "payments", "user_memberships"
   add_foreign_key "sessions", "users"
+  add_foreign_key "user_memberships", "payments"
+  add_foreign_key "user_memberships", "subscription_types"
+  add_foreign_key "user_memberships", "users"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
 end
