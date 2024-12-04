@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_04_143307) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_04_154551) do
+  create_table "donations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "payment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_donations_on_payment_id"
+    t.index ["user_id"], name: "index_donations_on_user_id"
+  end
+
   create_table "event_attendees", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "event_id", null: false
@@ -72,6 +81,17 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_143307) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "training_attendees", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "user_membership_id", null: false
+    t.boolean "check"
+    t.text "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_training_attendees_on_user_id"
+    t.index ["user_membership_id"], name: "index_training_attendees_on_user_membership_id"
+  end
+
   create_table "user_memberships", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "subscription_type_id", null: false
@@ -114,12 +134,16 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_04_143307) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "donations", "payments"
+  add_foreign_key "donations", "users"
   add_foreign_key "event_attendees", "events"
   add_foreign_key "event_attendees", "payments"
   add_foreign_key "event_attendees", "users"
   add_foreign_key "events", "users"
   add_foreign_key "payments", "user_memberships"
   add_foreign_key "sessions", "users"
+  add_foreign_key "training_attendees", "user_memberships"
+  add_foreign_key "training_attendees", "users"
   add_foreign_key "user_memberships", "payments"
   add_foreign_key "user_memberships", "subscription_types"
   add_foreign_key "user_memberships", "users"
