@@ -1,0 +1,43 @@
+<nav class="bg-white shadow-md">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <!-- Logo -->
+    <div class="text-2xl font-bold text-gray-800">
+      <a href="/">CiRcOgraPHe</a>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex space-x-4">
+      <a href="#" class="text-gray-600 hover:text-gray-800">Accueil</a>
+      <a href="#" class="text-gray-600 hover:text-gray-800">Le Cirque</a>
+      <a href="#" class="text-gray-600 hover:text-gray-800">Le Graphe</a>
+    </div>
+
+    <!-- Buttons -->
+    <div class="hidden md:flex space-x-4">
+      <a href="/sign_up" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">S'inscrire</a>
+      <a href="/sign_in" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Se connecter</a>
+      <a href="/profile" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 hidden">Votre profil</a>
+    </div>
+
+    <!-- Burger Menu Icon -->
+    <button id="burger-menu" class="block md:hidden focus:outline-none">
+      <svg class="w-6 h-6 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gray-100">
+    <a href="/" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Accueil</a>
+    <a href="/about" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">À propos</a>
+    <a href="/contact" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">Contact</a>
+
+    <!-- Buttons -->
+    <div class="mt-4 px-4">
+      <a href="/sign_up" class="block w-full py-2 text-center bg-blue-500 text-white rounded hover:bg-blue-600">S'inscrire</a>
+      <a href="/sign_in" class="block w-full mt-2 py-2 text-center bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Se connecter</a>
+      <a href="/profile" class="block w-full mt-2 py-2 text-center bg-green-500 text-white rounded hover:bg-green-600 hidden">Votre profil</a>
+    </div>
+  </div>
+</nav>
