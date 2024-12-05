@@ -7,7 +7,7 @@ class CreateEvents < ActiveRecord::Migration[8.0]
       t.text :bottom_description
       t.string :location
       t.datetime :date, null: false
-      t.references :user, null: false, foreign_key: true
+      t.references :creator, null: false, foreign_key: { to_table: :users }
       t.string :picture_url
 
       t.timestamps

@@ -109,7 +109,7 @@ end
     image_rights: [true, false].sample,
     newsletter: [true, false].sample,
     get_involved: [true, false].sample,
-    role: 
+    role: Role.all.sample.name
   )
 end
 

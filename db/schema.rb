@@ -39,11 +39,11 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_100153) do
     t.text "bottom_description"
     t.string "location"
     t.datetime "date", null: false
-    t.integer "user_id", null: false
+    t.integer "creator_id", null: false
     t.string "picture_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_events_on_user_id"
+    t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -136,7 +136,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_100153) do
   add_foreign_key "event_attendees", "events"
   add_foreign_key "event_attendees", "payments"
   add_foreign_key "event_attendees", "users"
-  add_foreign_key "events", "users"
+  add_foreign_key "events", "users", column: "creator_id"
   add_foreign_key "sessions", "users"
   add_foreign_key "training_attendees", "user_memberships"
   add_foreign_key "training_attendees", "users"
