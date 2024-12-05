@@ -51,4 +51,18 @@ body {
     margin-right: 2em;
 }
 
+.white-button_css {
 
+    padding: 5px 15px;
+    border: 1px solid #007bff;
+    background-color: white;
+    color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.white-button_css:hover {
+
+    background-color: #e7f0ff;
+}
