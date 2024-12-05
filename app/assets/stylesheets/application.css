@@ -66,3 +66,18 @@ body {
 
     background-color: #e7f0ff;
 }
+
+.blue-button_css {
+
+    padding: 5px 15px;
+    border: none;
+    background-color: #6b47b8;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px; 
+}
+
+.blue-button_css:hover {
+    background-color: #5836a5;
+}
