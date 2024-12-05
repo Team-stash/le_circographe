@@ -31,7 +31,6 @@ Role.create(name: 'volunteer')
 Role.create(name: 'admin')
 Role.create(name: 'godmode')
 
-UserMembership.create()
 
 User.create!(
   email_address: "test@example.com",

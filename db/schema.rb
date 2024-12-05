@@ -72,11 +72,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_100153) do
   end
 
   create_table "subscription_types", force: :cascade do |t|
-    t.string "membership_status"
     t.decimal "price"
     t.integer "duration"
     t.text "description"
-    t.boolean "status"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
