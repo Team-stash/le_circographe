@@ -8,12 +8,30 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# En suivant l'ordre des dépendances
+
+EventAttendee.destroy_all
+UserRole.destroy_all
+Donation.destroy_all
+Session.destroy_all
+UserMembership.destroy_all
+Event.destroy_all
+Payment.destroy_all
+SubscriptionType.destroy_all
+Role.destroy_all
+User.destroy_all
+
+
+
+
 Role.create(name: 'guest')
 Role.create(name: 'membership')
 Role.create(name: 'circus_membership')
 Role.create(name: 'volunteer')
 Role.create(name: 'admin')
 Role.create(name: 'godmode')
+
+UserMembership.create()
 
 User.create!(
   email_address: "test@example.com",
