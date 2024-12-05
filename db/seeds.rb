@@ -31,6 +31,36 @@ Role.create(name: 'volunteer')
 Role.create(name: 'admin')
 Role.create(name: 'godmode')
 
+SubscriptionType.create(
+  name: "daily",
+  duration: 1,
+  price: 4,
+  description: "",
+)
+
+SubscriptionType.create(
+  name: "trimestrial",
+  duration: 90,
+  price: 65,
+  description: "",
+)
+
+SubscriptionType.create(
+  name: "annual",
+  duration: 365,
+  price: 150,
+  description: "",
+)
+
+SubscriptionType.create(
+  name: "booklet",
+  duration: -1,
+  price: 30,
+  description: "",
+)
+
+
+
 
 User.create!(
   email_address: "test@example.com",
@@ -56,6 +86,13 @@ User.create!(
   role: "admin"
 )
 
+10.times do |i|
+  Payment.create(id: i, payment_method: %w[CB check cash].sample, amount: rand(100), status: true)
+end
+
+
+
+
 20.times do
   User.create!(
     email_address: Faker::Internet.email,
@@ -72,6 +109,20 @@ User.create!(
     image_rights: [true, false].sample,
     newsletter: [true, false].sample,
     get_involved: [true, false].sample,
-    role: %w[guest membership circus_membership volunteer].sample
+    role: 
   )
 end
+
+10.times do
+  first_stid = SubscriptionType.first.id
+  last_stid = SubscriptionType.last.id
+
+  stid_range = last_stid - first_stid
+  UserMembership.create(
+    user_id: rand(20),
+    subscription_type_id: (first_stid + rand(stid_range)),
+    payment_id: rand(10),
+    status: true
+  )
+end
+
