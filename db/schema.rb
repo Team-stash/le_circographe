@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_04_154551) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_05_100153) do
   create_table "donations", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "payment_id", null: false

@@ -5,6 +5,13 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :event_attendees, dependent: :destroy
   has_many :events, through: :event_attendees
+  has_many :user_memberships
+  has_many :subscription_types, through: :user_memberships
+  has_many :training_attendees, through: :user_memberships
+  has_many :payments, through: :user_memberships
+  has_many :payments, through: :donations
+  
+
 
   enum :role, %i[guest membership circus_membership volunteer admin godmode], default: :guest
 
