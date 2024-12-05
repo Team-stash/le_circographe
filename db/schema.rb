@@ -47,11 +47,13 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_100153) do
   end
 
   create_table "payments", force: :cascade do |t|
+    t.integer "user_membership_id"
     t.string "payment_method"
     t.decimal "amount"
     t.boolean "status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_membership_id"], name: "index_payments_on_user_membership_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -70,7 +72,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_100153) do
   end
 
   create_table "subscription_types", force: :cascade do |t|
-    t.string "membership_type"
+    t.string "membership_status"
     t.decimal "price"
     t.integer "duration"
     t.text "description"
@@ -138,6 +140,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_05_100153) do
   add_foreign_key "event_attendees", "payments"
   add_foreign_key "event_attendees", "users"
   add_foreign_key "events", "users"
+  add_foreign_key "payments", "user_memberships"
   add_foreign_key "sessions", "users"
   add_foreign_key "training_attendees", "user_memberships"
   add_foreign_key "training_attendees", "users"
