@@ -83,16 +83,19 @@
 
 .admin-layout {
   display: flex;
-  min-height: 100vh;
+  margin-left: 250px;
+  padding-top: 60px;
 }
 
 .admin-sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
   width: 250px;
+  height: calc(100vh - 60px);
   background-color: #f3f4f6;
+  overflow-y: auto;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
 }
 
 .sidebar-logo img {
@@ -129,49 +132,4 @@
   flex: 1;
   padding: 20px;
   background-color: #ffffff;
-}
-.admin-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #E6E6EA;
-  padding: 10px 20px;
-  border-bottom: 1px solid #ccc;
-}
-
-.admin-header-left,
-.admin-header-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.admin-header-left{
-  justify-self: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.admin-header .btn {
-  text-decoration: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-weight: bold;
-  color: white;
-}
-
-.admin-header .btn.btn-secondary {
-  background-color: #6b47b8;
-}
-
-.admin-header .btn.btn-secondary:hover {
-  background-color: #5836a5;
-}
-
-.admin-header .btn.btn-danger {
-  background-color: #ff4d4d;
-}
-
-.admin-header .btn.btn-danger:hover {
-  background-color: #e63939;
 }
