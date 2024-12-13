@@ -16,7 +16,8 @@ class User < ApplicationRecord
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
   has_secure_password
-  validates :email_address, presence: true, uniqueness: true
+  validates :email_address, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+
 
   alias_attribute :email, :email_address
 

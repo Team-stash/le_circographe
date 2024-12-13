@@ -1,21 +1,9 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+event_1:
+  title: Test Event 1
+  date: <%= 2.days.from_now %>
+  creator_id: <%= User.find_by(email_address: 'admin@example.com')&.id || User.first&.id %>
 
-one:
-  title: MyString
-  upper_description: MyText
-  middle_description: MyText
-  bottom_description: MyText
-  location: MyString
-  date: 2024-12-04 10:50:17
-  user: one
-  picture_url: MyString
-
-two:
-  title: MyString
-  upper_description: MyText
-  middle_description: MyText
-  bottom_description: MyText
-  location: MyString
-  date: 2024-12-04 10:50:17
-  user: two
-  picture_url: MyString
+event_2:
+  title: Test Event 2
+  date: <%= 1.week.from_now %>
+  creator_id: <%= User.find_by(email_address: 'guest@example.com')&.id || User.second&.id %>

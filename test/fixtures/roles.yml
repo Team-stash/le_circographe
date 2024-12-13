@@ -1,7 +1,8 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+guest_role:
+  name: guest
 
-one:
-  name: MyString
+membership_role:
+  name: membership
 
-two:
-  name: MyString
+admin_role:
+  name: admin

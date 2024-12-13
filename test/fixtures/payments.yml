@@ -1,11 +1,9 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+completed_payment:
+  payment_method: credit_card
+  amount: 100.00
+  status: true
 
-one:
-  payment_method: MyString
-  amount: 9.99
-  status: false
-
-two:
-  payment_method: MyString
-  amount: 9.99
+pending_payment:
+  payment_method: bank_transfer
+  amount: 50.00
   status: false

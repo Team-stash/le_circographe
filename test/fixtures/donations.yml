@@ -1,9 +1,3 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  user: one
-  payment: one
-
-two:
-  user: two
-  payment: two
+guest_donation:
+  user_id: <%= User.find_by(email_address: 'guest@example.com')&.id || 1 %>
+  payment_id: <%= Payment.find_by(status: true)&.id || 1 %>

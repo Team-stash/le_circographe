@@ -1,13 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+event_attendee_1:
+  user_id: <%= User.find_by(email_address: 'guest@example.com')&.id || User.first&.id %>
+  event_id: <%= Event.first&.id %>
+  payment_id: <%= Payment.first&.id %>
+  interested: true
 
-one:
-  user: one
-  event: one
-  payment: one
-  interested: false
-
-two:
-  user: two
-  event: two
-  payment: two
+event_attendee_2:
+  user_id: <%= User.find_by(email_address: 'admin@example.com')&.id || User.second&.id %>
+  event_id: <%= Event.second&.id %>
+  payment_id: <%= Payment.second&.id %>
   interested: false
