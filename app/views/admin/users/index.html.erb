@@ -22,6 +22,7 @@
         <th>Rôle</th>
         <th>Abonnement</th>
         <th>Actions</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -37,6 +38,8 @@
           <% end %>
           <td>
             <%= link_to "voir", admin_user_path(user), class: "btn btn-primary", data: { turbo: false } %>
+          </td>
+          <td>
           </td>
         </tr>
       <% end %>

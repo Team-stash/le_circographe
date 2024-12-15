@@ -2,6 +2,9 @@ class TrainingAttendee < ApplicationRecord
   belongs_to :user
   belongs_to :user_membership
 
+  validates :user, presence: true
+  validates :user_membership, presence: true
+
   def valid_for_training?
     if user_membership.status && user_membership.expiration_date >= Date.today
       if user_membership.subscription_type.name == "Carnet" || user_membership.subscription_type.name == "Entrée simple"

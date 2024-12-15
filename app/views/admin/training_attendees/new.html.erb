@@ -1,0 +1,10 @@
+<h1>Ajouter une présence à l'entraînement</h1>
+
+<%= form_with model: @training_attendee, url: admin_training_attendees_path, method: :post do |f| %>
+  <div>
+    <%= label_tag :user_membership_id, "Abonnement" %>
+    <%= select_tag :user_membership_id, options_from_collection_for_select(UserMembership.all, :id, :user_id) %>
+  </div>
+
+  <%= f.submit "Enregistrer la présence" %>
+<% end %>

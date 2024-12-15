@@ -1,0 +1,26 @@
+<h1>Présences aux entraînements - Aujourd'hui</h1>
+
+<% if @today_attendees.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Abonnement</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @today_attendees.each do |attendee| %>
+        <tr>
+          <td><%= attendee.user.full_name %></td>
+          <td><%= attendee.user_membership.subscription_type.name %></td>
+          <td>
+            <%= link_to "Supprimer", training_attendee_path(attendee), method: :delete, data: { confirm: "Êtes-vous sûr ?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Aucun participant enregistré pour aujourd'hui.</p>
+<% end %>

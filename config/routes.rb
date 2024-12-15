@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resource :opening_hours, only: %i[show edit update]
     resources :users
     resources :events
+    resources :training_attendees
     resources :members do
       collection do
         get :membership_register
