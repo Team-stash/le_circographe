@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_15_151614) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_15_184635) do
   create_table "donations", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "payment_id", null: false
@@ -108,6 +108,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_15_151614) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "expiration_date"
+    t.integer "entries_left", default: 0, null: false
     t.index ["payment_id"], name: "index_user_memberships_on_payment_id"
     t.index ["subscription_type_id"], name: "index_user_memberships_on_subscription_type_id"
     t.index ["user_id"], name: "index_user_memberships_on_user_id"
