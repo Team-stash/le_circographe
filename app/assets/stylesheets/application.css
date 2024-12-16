@@ -7,6 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  font-size: clamp(14px, 1vw, 18px); /* Taille de police de base responsive */
 }
 
 main {
@@ -26,6 +27,16 @@ main {
   z-index: 1;
 }
 
+.banner-text {
+  text-align: center;
+  margin-top: 18px;
+  font-size: clamp(18px, 3vw, 35px); /* Texte adaptatif */
+  color: #374151;
+  font-weight: 500;
+  line-height: 1.4;
+  font-family: 'RoughTypewriter';
+}
+
 .container {
   display: flex;
   justify-content: space-between;
@@ -33,48 +44,28 @@ main {
   gap: 100px;
   padding: 50px;
   margin: auto;
-}
-.container.reverse {
-  flex-direction: row-reverse;
+  font-size: clamp(16px, 2vw, 20px); /* Police adaptative dans le container */
 }
 
-
-.page-container {
-  display: flex;
-  /* justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 60px);
-  margin-left: 200px;
-  padding-top: 60px;  */
-}
-
-.image-container,
 .text-container {
   flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.text-container {
-  border-left: auto;
   flex-direction: column;
-  font-size: 33px;
-  font-family: Rough_typewritter;
+  font-size: clamp(20px, 2.5vw, 33px); /* Police dynamique */
+  font-family: 'RoughTypewriter';
 }
 
 .text-container strong {
-  font-family: Circographe;
+  font-family: 'Circographe';
   font-weight: 600;
-  font-size: 35px;
-} 
+  font-size: clamp(22px, 2.8vw, 35px); /* Police dynamique */
+}
 
 .image {
   border-radius: 15%;
   width: 100%;
   height: auto;
   object-fit: cover;
-
 }
 
 .image-main {
@@ -91,19 +82,61 @@ main {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.banner-text {
-  text-align: center;
-  margin-top: 18px;
-  font-size: 35px;
-  color: #374151;
-  font-weight: 500;
-  line-height: 1.4;
-  font-family: RoughTypewriter;
+@media (max-width: 1200px) {
+  .container {
+    flex-direction: column; /* Passe en colonne pour mieux s'adapter */
+    gap: 50px;
+    padding: 40px; /* Réduit les marges internes */
+  }
+
+  .banner-text {
+    font-size: clamp(16px, 2.5vw, 28px); /* Ajustement taille de police */
+  }
+
+  .text-container {
+    font-size: clamp(18px, 2.2vw, 30px);
+  }
+
+  .text-container strong {
+    font-size: clamp(20px, 2.5vw, 32px);
+  }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
   .container {
     flex-direction: column;
     gap: 20px;
+    padding: 20px; /* Réduit davantage les marges pour petits écrans */
+  }
+
+  .banner {
+    height: 400px; /* Réduit la hauteur de la bannière */
+    clip-path: none; /* Désactive le clip-path pour éviter les déformations */
+  }
+
+  .banner-text {
+    font-size: clamp(14px, 4vw, 20px); /* Police plus petite et adaptative */
+  }
+
+  .text-container {
+    font-size: clamp(16px, 4vw, 22px); /* Ajuste pour petits écrans */
+  }
+
+  .text-container strong {
+    font-size: clamp(18px, 4.5vw, 24px); /* Police forte ajustée */
+  }
+
+  .image-main {
+    border-radius: 10%; /* Réduit légèrement l'arrondi */
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center; /* Centre les éléments de la navbar */
+    gap: 10px;
+  }
+
+  .navbar-logo img {
+    height: 60px; /* Logo plus petit */
   }
 }
