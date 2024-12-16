@@ -82,15 +82,45 @@ main {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.password-container {
+  position: relative;
+}
+
+.password-container .toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.password-container .toggle-password i {
+  font-size: 1.2em;
+  color: #555;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.form-group label {
+  margin: 0;
+}
+
 @media (max-width: 1200px) {
   .container {
-    flex-direction: column; /* Passe en colonne pour mieux s'adapter */
+    flex-direction: column;
     gap: 50px;
-    padding: 40px; /* Réduit les marges internes */
+    padding: 40px;
   }
 
   .banner-text {
-    font-size: clamp(16px, 2.5vw, 28px); /* Ajustement taille de police */
+    font-size: clamp(16px, 2.5vw, 28px);
   }
 
   .text-container {
@@ -106,37 +136,37 @@ main {
   .container {
     flex-direction: column;
     gap: 20px;
-    padding: 20px; /* Réduit davantage les marges pour petits écrans */
+    padding: 20px;
   }
 
   .banner {
-    height: 400px; /* Réduit la hauteur de la bannière */
-    clip-path: none; /* Désactive le clip-path pour éviter les déformations */
+    height: 400px;
+    clip-path: none;
   }
 
   .banner-text {
-    font-size: clamp(14px, 4vw, 20px); /* Police plus petite et adaptative */
+    font-size: clamp(14px, 4vw, 20px);
   }
 
   .text-container {
-    font-size: clamp(16px, 4vw, 22px); /* Ajuste pour petits écrans */
+    font-size: clamp(16px, 4vw, 22px);
   }
 
   .text-container strong {
-    font-size: clamp(18px, 4.5vw, 24px); /* Police forte ajustée */
+    font-size: clamp(18px, 4.5vw, 24px);
   }
 
   .image-main {
-    border-radius: 10%; /* Réduit légèrement l'arrondi */
+    border-radius: 10%;
   }
 
   .navbar {
     flex-direction: column;
-    align-items: center; /* Centre les éléments de la navbar */
+    align-items: center;
     gap: 10px;
   }
 
   .navbar-logo img {
-    height: 60px; /* Logo plus petit */
+    height: 60px;
   }
 }
