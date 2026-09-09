@@ -71,7 +71,6 @@
     <% else %>
 
     <% member_space_page = controller_name == 'users' && action_name == 'show' || controller_name == 'settings' %>
-    <% unless member_space_page %>
     <style nonce="<%= content_security_policy_nonce %>">
       .public-bg-image {
         background-image: url('<%= asset_path(content_for(:background_image) || 'background.webp') %>');
@@ -79,9 +78,11 @@
         backface-visibility: hidden;
       }
     </style>
-    <div class="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat public-bg-image <%= controller_name == 'home' && action_name == 'index' ? 'home-mobile-background' : '' %>"></div>
-    <% end %>
-    <div class="fixed inset-0 -z-10 bg-white <%= 'hidden' unless member_space_page %>"></div>
+    <%# id + data-turbo-permanent : évite que Turbo détruise/recrée ces calques à chaque navigation (flash de rechargement du fond) %>
+    <div id="public-bg-image" data-turbo-permanent
+         class="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat public-bg-image <%= controller_name == 'home' && action_name == 'index' ? 'home-mobile-background' : '' %> <%= 'max-sm:hidden' if member_space_page %>"></div>
+    <div id="public-bg-fallback" data-turbo-permanent
+         class="fixed inset-0 -z-10 bg-white <%= member_space_page ? 'sm:hidden' : 'hidden' %>"></div>
     <header>
         <%= render 'shared/navbar' %>
     </header>
