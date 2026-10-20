@@ -46,7 +46,9 @@ env:
     # utilisé en sandbox (voir config/environments/staging.rb). Pas un secret, juste une adresse
     # email — mais pas de valeur par défaut fiable ici (dépend du compte Mailjet utilisé), à définir
     # explicitement (ex. export local avant déploiement, ou variable GitHub Actions).
-    MAILER_FROM: <%= ENV.fetch("MAILER_FROM", "") %>
+    # Guillemets explicites : "KEY: " sans rien après devient `nil` en YAML (pas ""),
+    # et Kamal rejette un nil là où il attend une string — cassé en l'absence du secret.
+    MAILER_FROM: "<%= ENV.fetch("MAILER_FROM", "") %>"
     # Cold start staging = cold start prod : db/seeds.rb ne charge que FAQ, conseil d'administration
     # et partenaires (pas de comptes, pas de catalogue). Le jeu de démo est opt-in via l'alias
     # reset_db_demo (SEED_DEMO=true) ; SEED_LEAN / SEED_POPULATION_COUNT ne servent alors qu'à lui.
