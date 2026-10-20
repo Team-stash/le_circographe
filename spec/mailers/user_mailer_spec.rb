@@ -91,6 +91,8 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it "répond vers contact@lecircographe.fr" do
+      mail = described_class.membership_expiration_reminder(membership)
+
       expect(mail.reply_to).to eq([ "contact@lecircographe.fr" ])
     end
   end
