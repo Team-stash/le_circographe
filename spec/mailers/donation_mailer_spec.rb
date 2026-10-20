@@ -23,5 +23,11 @@ RSpec.describe DonationMailer, type: :mailer do
         .to include(I18n.t("mailers.donation_mailer.receipt_email.title"))
       expect(mail.attachments.map(&:filename)).to eq([ "recu-don-#{receipt.number}.pdf" ])
     end
+
+    it "répond vers contact@lecircographe.fr" do
+      mail = described_class.receipt_email(receipt)
+
+      expect(mail.reply_to).to eq([ "contact@lecircographe.fr" ])
+    end
   end
 end

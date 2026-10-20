@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class ApplicationMailer < ActionMailer::Base
-  default from: ENV["MAILER_FROM"] || "no-reply@lecircographe.fr"
+  # Sender address per environment: config.action_mailer.default_options (production/staging.rb),
+  # never from a local .env file (dev machines carry a personal Gmail there for SMTP testing).
+  default from: "no-reply@lecircographe.fr"
   layout "mailer"
 
   private

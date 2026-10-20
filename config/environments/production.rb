@@ -68,6 +68,10 @@ Rails.application.configure do
     protocol: "https"
   }
 
+  # Domaine lecircographe.fr validé côté Mailjet (compte Circographe) : adresse fixe,
+  # pas besoin de passer par ENV/credentials ici (contrairement à staging, cf. staging.rb).
+  config.action_mailer.default_options = { from: "Le Circographe <no-reply@lecircographe.fr>" }
+
   # Mailjet (compte Circographe) : branché mais ÉTEINT. Tant que MAILER_DELIVERIES_ENABLED n'est pas
   # "true" (config/deploy.production.yml), les mails sont construits et journalisés mais jamais envoyés.
   # Allumer = changer ce flag + redéployer, après validation du parcours en staging.
