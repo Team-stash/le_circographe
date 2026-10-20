@@ -16,6 +16,10 @@ RSpec.describe PasswordsMailer, type: :mailer do
     it "a le bon sujet" do
       expect(mail.subject).to eq(I18n.t("mailers.passwords_mailer.reset.subject"))
     end
+
+    it "n'a pas de reply_to (mail de sécurité)" do
+      expect(mail.reply_to).to be_nil
+    end
   end
 
   describe "#changed" do
@@ -33,6 +37,10 @@ RSpec.describe PasswordsMailer, type: :mailer do
 
     it "est envoyé à l'utilisateur" do
       expect(mail.to).to eq([ user.email_address ])
+    end
+
+    it "n'a pas de reply_to (mail de sécurité)" do
+      expect(mail.reply_to).to be_nil
     end
   end
 end

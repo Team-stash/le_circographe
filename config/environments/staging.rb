@@ -59,6 +59,11 @@ Rails.application.configure do
     protocol: "https"
   }
 
+  # Le domaine lecircographe.fr n'est pas validé sur ce compte Mailjet perso (sandbox) —
+  # l'adresse d'expédition doit être une adresse validée sur CE compte, fournie via le secret
+  # Kamal MAILER_FROM (config/deploy.staging.yml), jamais depuis un .env local.
+  config.action_mailer.default_options = { from: ENV.fetch("MAILER_FROM", "no-reply@lecircographe.fr") }
+
   # Active Storage
   config.active_storage.service = :local
 

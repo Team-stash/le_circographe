@@ -4,24 +4,36 @@ class UserMailer < ApplicationMailer
   def welcome_by_admin(user, reset_password_url)
     @user = user
     @reset_password_url = reset_password_url
-    @url = "https://lecircographe.fr/"
+    @url = root_url
     set_unsubscribe_url
-    mail(to: @user.email_address, subject: I18n.t("mailers.user_mailer.welcome_by_admin.subject"))
+    mail(
+      to: @user.email_address,
+      subject: I18n.t("mailers.user_mailer.welcome_by_admin.subject"),
+      reply_to: "contact@lecircographe.fr"
+    )
   end
 
   def welcome_email(user)
     @user = user
-    @url = "https://lecircographe.fr/"
+    @url = root_url
     set_unsubscribe_url
-    mail(to: @user.email_address, subject: I18n.t("mailers.user_mailer.welcome_email.subject"))
+    mail(
+      to: @user.email_address,
+      subject: I18n.t("mailers.user_mailer.welcome_email.subject"),
+      reply_to: "contact@lecircographe.fr"
+    )
   end
 
   # Adressé à la Person (pas au User) : un adhérent n'a pas forcément de compte web.
   def membership_expiration_reminder(membership)
     @person = membership.person
     @end_date = membership.ended_at
-    @url = "https://lecircographe.fr/"
-    mail(to: @person.email, subject: I18n.t("mailers.user_mailer.membership_expiration_reminder.subject"))
+    @url = root_url
+    mail(
+      to: @person.email,
+      subject: I18n.t("mailers.user_mailer.membership_expiration_reminder.subject"),
+      reply_to: "contact@lecircographe.fr"
+    )
   end
 
   def contact_email(name, email, message, category, recipient_email)
