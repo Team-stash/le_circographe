@@ -16,6 +16,10 @@ RSpec.describe UserMailer, type: :mailer do
     it "a le bon sujet" do
       expect(mail.subject).to eq(I18n.t("mailers.user_mailer.welcome_email.subject"))
     end
+
+    it "répond vers contact@lecircographe.fr" do
+      expect(mail.reply_to).to eq([ "contact@lecircographe.fr" ])
+    end
   end
 
   describe "#welcome_by_admin" do
@@ -32,6 +36,10 @@ RSpec.describe UserMailer, type: :mailer do
     it "inclut l'url de reset dans le corps" do
       expect(mail.body.decoded).to include("https://example.com/reset")
     end
+
+    it "répond vers contact@lecircographe.fr" do
+      expect(mail.reply_to).to eq([ "contact@lecircographe.fr" ])
+    end
   end
 
   describe "#email_change_verification" do
@@ -47,6 +55,10 @@ RSpec.describe UserMailer, type: :mailer do
 
     it "inclut le code de vérification dans le corps" do
       expect(mail.html_part.body.decoded).to include("123456")
+    end
+
+    it "n'a pas de reply_to (mail de sécurité)" do
+      expect(mail.reply_to).to be_nil
     end
   end
 
@@ -76,6 +88,12 @@ RSpec.describe UserMailer, type: :mailer do
       expect(mail.subject).to eq(I18n.t("mailers.user_mailer.membership_expiration_reminder.subject"))
       expect(mail.body.encoded).to include("Ada Lovelace")
       expect(mail.body.encoded).to include("02/11/2026")
+    end
+
+    it "répond vers contact@lecircographe.fr" do
+      mail = described_class.membership_expiration_reminder(membership)
+
+      expect(mail.reply_to).to eq([ "contact@lecircographe.fr" ])
     end
   end
 end

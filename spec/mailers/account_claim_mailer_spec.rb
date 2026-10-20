@@ -22,5 +22,9 @@ RSpec.describe AccountClaimMailer, type: :mailer do
     it "inclut le token de confirmation dans le corps" do
       expect(mail.body.decoded).to include(claim.confirmation_token)
     end
+
+    it "n'a pas de reply_to (mail de sécurité)" do
+      expect(mail.reply_to).to be_nil
+    end
   end
 end

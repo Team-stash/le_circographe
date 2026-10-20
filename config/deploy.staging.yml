@@ -42,6 +42,11 @@ env:
     STAGING_AUTH: true
     STAGING_PASSWORD: <%= ENV.fetch("STAGING_PASSWORD", "") %>
     PUBLIC_REGISTRATION_ENABLED: false
+    # Adresse d'expédition des mails staging : doit être validée sur le compte Mailjet perso
+    # utilisé en sandbox (voir config/environments/staging.rb). Pas un secret, juste une adresse
+    # email — mais pas de valeur par défaut fiable ici (dépend du compte Mailjet utilisé), à définir
+    # explicitement (ex. export local avant déploiement, ou variable GitHub Actions).
+    MAILER_FROM: <%= ENV.fetch("MAILER_FROM", "") %>
     # Cold start staging = cold start prod : db/seeds.rb ne charge que FAQ, conseil d'administration
     # et partenaires (pas de comptes, pas de catalogue). Le jeu de démo est opt-in via l'alias
     # reset_db_demo (SEED_DEMO=true) ; SEED_LEAN / SEED_POPULATION_COUNT ne servent alors qu'à lui.

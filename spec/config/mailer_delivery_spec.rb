@@ -28,6 +28,12 @@ RSpec.describe "Mailer delivery configuration by environment" do
       expect(source).to include("credentials.dig(:mailjet, :production, :api_key)")
       expect(source).not_to include(":sandbox")
     end
+
+    it "sends from a fixed, validated address — not from local .env" do
+      source = env_file("production")
+
+      expect(source).to include('config.action_mailer.default_options = { from: "Le Circographe <no-reply@lecircographe.fr>" }')
+    end
   end
 
   describe "development" do
@@ -43,6 +49,17 @@ RSpec.describe "Mailer delivery configuration by environment" do
 
       expect(source).to include("credentials.dig(:mailjet, :sandbox, :api_key)")
       expect(source).not_to include(":production")
+    end
+
+    it "sends from MAILER_FROM (validated on the sandbox account), set via Kamal — not local .env" do
+      source = env_file("staging")
+
+      expect(source).to include('config.action_mailer.default_options = { from: ENV.fetch("MAILER_FROM", "no-reply@lecircographe.fr") }')
+
+      allow(ENV).to receive(:fetch).and_call_original
+      allow(ENV).to receive(:fetch).with("STAGING_SERVER_IP").and_return("127.0.0.1")
+      deploy = YAML.safe_load(ERB.new(Rails.root.join("config/deploy.staging.yml").read).result, aliases: true)
+      expect(deploy.dig("env", "clear")).to have_key("MAILER_FROM")
     end
   end
 end

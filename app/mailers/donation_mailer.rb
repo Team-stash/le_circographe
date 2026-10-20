@@ -12,7 +12,8 @@ class DonationMailer < ApplicationMailer
 
     mail(
       to: recipient,
-      subject: I18n.t("mailers.donation_mailer.receipt_email.subject", number: donation_receipt.number)
+      subject: I18n.t("mailers.donation_mailer.receipt_email.subject", number: donation_receipt.number),
+      reply_to: "contact@lecircographe.fr"
     )
   end
 end
